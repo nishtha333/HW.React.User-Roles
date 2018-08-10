@@ -4380,7 +4380,7 @@ eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n    value: true\n});
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n    value: true\n});\n\nvar _react = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n\nvar _react2 = _interopRequireDefault(_react);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nvar DepartmentRow = function DepartmentRow(_ref) {\n    var department = _ref.department,\n        setDepartment = _ref.setDepartment;\n\n\n    return _react2.default.createElement(\n        'li',\n        { onClick: function onClick() {\n                return setDepartment(department.id);\n            } },\n        department.name\n    );\n};\n\nexports.default = DepartmentRow;\n\n//# sourceURL=webpack:///./src/DepartmentRow.js?");
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n    value: true\n});\n\nvar _react = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n\nvar _react2 = _interopRequireDefault(_react);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nvar DepartmentRow = function DepartmentRow(_ref) {\n    var department = _ref.department,\n        setDepartment = _ref.setDepartment;\n\n\n    return _react2.default.createElement(\n        'li',\n        { onClick: function onClick() {\n                return setDepartment(department.id);\n            } },\n        department.name,\n        '  ',\n        department.users.length\n    );\n};\n\nexports.default = DepartmentRow;\n\n//# sourceURL=webpack:///./src/DepartmentRow.js?");
 
 /***/ }),
 

@@ -38,8 +38,9 @@ const seed = () => {
 };
 
 const getDepartments = () => {
-    return Department.findAll({ include: [User] });
-}
+    return Department.findAll({include: [User]});
+};
+
 
 const getDepartmentById = (id) => {
     return Department.findOne({ where: {id: id}, include: [User] });
