@@ -15,3 +15,9 @@ router.get('/departments/:id', (req, res, next) => {
       .then((dept) => res.send(dept))
       .catch(next);
 });
+
+router.get('/users', (req, res, next) => {
+  db.getUsers()
+    .then((users) => res.send(users))
+    .catch(next);
+});

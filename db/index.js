@@ -32,6 +32,7 @@ const seed = () => {
             User.create({name: "Moe", departmentId: admin.id}),
             User.create({name: "Larry", departmentId: admin.id}),
             User.create({name: "Curly", departmentId: hr.id}),
+            User.create({name: "Shep"}),
         ])
     });
 };
@@ -44,12 +45,16 @@ const getDepartmentById = (id) => {
     return Department.findOne({ where: {id: id}, include: [User] });
 }
 
+const getUsers = () => {
+    return User.findAll({include: [Department]});
+}
 
 module.exports = {
     sync,
     seed,
     getDepartments,
     getDepartmentById,
+    getUsers,
     Models: {
         User,
         Department

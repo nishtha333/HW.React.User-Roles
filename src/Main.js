@@ -2,6 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import DepartmentList from './DepartmentList'
 import DepartmentDetail from './DepartmentDetail'
+import UserListWithDepartment from './UserListWithDepartment'
 
 class Main extends React.Component {
 
@@ -9,9 +10,11 @@ class Main extends React.Component {
         super()
         this.state = {
             departments: [],
-            department: {}
+            department: {},
+            usersWithDepts: []
         }
         this.setDepartment = this.setDepartment.bind(this);
+        this.unselectDepartment = this.unselectDepartment.bind(this);
     }
 
     setDepartment(departmentId) {
@@ -23,6 +26,12 @@ class Main extends React.Component {
              })    
     }
 
+    unselectDepartment() {
+        this.setState({
+            department: {}
+        })
+    }
+
     componentDidMount() {
         axios.get('/api/departments')
              .then(response => {
@@ -30,11 +39,18 @@ class Main extends React.Component {
                      departments: response.data
                  })
              })
+
+        axios.get('/api/users')
+             .then(response => {
+                 this.setState({
+                     usersWithDepts: response.data
+                 })
+             })
     }
 
     render () {
-        const {departments, department} = this.state;
-        const {setDepartment} = this;
+        const {departments, department, usersWithDepts} = this.state;
+        const {setDepartment, unselectDepartment} = this;
 
         return (
             <div id="container">
@@ -42,6 +58,13 @@ class Main extends React.Component {
                 {department.id ? <DepartmentDetail department={department}/>
                                : <DepartmentList departments={departments} setDepartment={setDepartment}/>
                 }
+
+                <hr/> 
+                <UserListWithDepartment usersWithDepts={usersWithDepts} />
+
+                <hr />
+                <a href='/' onClick={() => unselectDepartment()}>Back</a>
+
             </div>
         )
     }
